@@ -55,18 +55,45 @@ listContainer.addEventListener('click', function (event) {
 });
 
 function saveData() {
-    localStorage.setItem('data', listContainer.innerHTML);
+    const tasks = Array.from(listContainer.querySelectorAll('li')).map((task) => ({
+        text: task.querySelector('.task-label').textContent,
+        completed: task.classList.contains('checked')
+    }));
+    localStorage.setItem('data', JSON.stringify(tasks));
 }
 
 function showTask() {
     const saved = localStorage.getItem('data');
     if (!saved) return;
 
+    try {
+        const tasks = JSON.parse(saved);
+        if (Array.isArray(tasks)) {
+            tasks.forEach((task) => {
+                if (typeof task.text === 'string') {
+                    listContainer.appendChild(createTask(task.text, Boolean(task.completed)));
+                }
+            });
+            return;
+        }
+    } catch {
+        // Older versions stored task markup; migrate it below.
+    }
+
     const legacyList = document.createElement('ul');
     legacyList.innerHTML = saved;
     for (const oldTask of legacyList.querySelectorAll('li')) {
-        const text = oldTask.childNodes[0]?.textContent?.trim() || '';
-        if (text) listContainer.appendChild(createTask(text.replace(/×$/, '').trim(), oldTask.classList.contains('checked')));
+        const label = oldTask.querySelector('.task-label');
+        const text = label
+            ? label.textContent
+            : Array.from(oldTask.childNodes)
+                .filter((node) => node.nodeType === Node.TEXT_NODE)
+                .map((node) => node.textContent)
+                .join('')
+                .trim();
+        if (text) {
+            listContainer.appendChild(createTask(text, oldTask.classList.contains('checked')));
+        }
     }
 }
 showTask();
