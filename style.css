@@ -95,19 +95,22 @@ ul li.checked::before{
     background-image: url(Images/checked.png);
 }
 
-ul li span{
+ul li span,
+ul li .remove-task{
     position: absolute;
     right: 0;
     top: 5px;
     width: 40px;
     height: 40px;
-    font-size: 22px;
+    padding: 0;
+    background: transparent;
     color: #555;
+    font-size: 22px;
     line-height: 40px;
     text-align: center;
+    border-radius: 50%;
 }
 
-ul li span:hover{
+ul li .remove-task:hover{
     background: #bebebe;
-    border-radius: 50%;
 }
