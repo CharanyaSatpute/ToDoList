@@ -7,17 +7,17 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="todo-app">
-            <h2>To Do List <img src="Images/icon.png" alt="icon image"></h2>
-            <div class="row">
-                <input type="text" id="input-box" placeholder="Add your text">
-                <button onclick="addTask()">Add</button>
-            </div>
-            <ul id="list-container">
-            </ul>
-        </div>
-    </div>
+    <main class="container">
+        <section class="todo-app" aria-labelledby="todo-title">
+            <h1 id="todo-title">To Do List <img src="Images/icon.png" alt=""></h1>
+            <form class="row" id="task-form">
+                <label class="visually-hidden" for="input-box">New task</label>
+                <input type="text" id="input-box" placeholder="Add your task" required>
+                <button type="submit">Add</button>
+            </form>
+            <ul id="list-container" aria-label="Tasks"></ul>
+        </section>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
