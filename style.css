@@ -150,3 +150,49 @@ input:focus-visible{
     white-space: nowrap;
     border: 0;
 }
+
+@media (max-width: 540px){
+    .todo-app{
+        margin: 32px auto 16px;
+        padding: 28px 20px 40px;
+    }
+
+    .row{
+        padding-left: 12px;
+    }
+
+    input{
+        min-width: 0;
+    }
+
+    .row button{
+        flex: 0 0 auto;
+        padding: 13px 24px;
+    }
+
+    ul li{
+        overflow-wrap: anywhere;
+        padding-right: 44px;
+    }
+}
+
+@media (max-width: 360px){
+    .todo-app{
+        padding: 24px 14px 32px;
+    }
+
+    .row button{
+        padding: 12px 18px;
+        font-size: 15px;
+    }
+
+    ul li{
+        font-size: 16px;
+        padding-left: 42px;
+    }
+
+    ul li::before{
+        width: 24px;
+        height: 24px;
+    }
+}
