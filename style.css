@@ -10,7 +10,6 @@
     min-height: 100vh;
     background: linear-gradient(200deg, #135677, #4e805f);
     padding: 10px;
-    
 }
 
 .todo-app{
@@ -21,11 +20,12 @@
     padding: 40px 30px 70px;
     border-radius: 10px;
 }
-.todo-app h2{
+.todo-app h1{
     color: #002765;
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    font-size: 1.5rem;
 }
 
 .todo-app img{
@@ -67,7 +67,6 @@ ul li {
     font-size: 17px;
     padding: 15px 8px 12px 50px;
     user-select: none;
-    cursor: pointer;
     position: relative;
 }
 
@@ -80,10 +79,8 @@ ul li::before{
     background-image: url(Images/unchecked.png);
     background-position: center;
     background-size: cover;
-    background-position: center;
     top: 12px;
     left: 8px;
-    
 }
 
 ul li.checked{
@@ -95,8 +92,30 @@ ul li.checked::before{
     background-image: url(Images/checked.png);
 }
 
-ul li span,
-ul li .remove-task{
+.toggle-task{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 42px;
+    height: 100%;
+    padding: 0;
+    opacity: 0;
+}
+
+.toggle-task:focus-visible{
+    opacity: 1;
+    width: auto;
+    height: auto;
+    min-width: 120px;
+    z-index: 1;
+}
+
+.task-label{
+    display: inline-block;
+    padding-right: 44px;
+}
+
+.remove-task{
     position: absolute;
     right: 0;
     top: 5px;
@@ -111,6 +130,23 @@ ul li .remove-task{
     border-radius: 50%;
 }
 
-ul li .remove-task:hover{
+.remove-task:hover{
     background: #bebebe;
+}
+
+button:focus-visible,
+input:focus-visible{
+    outline: 3px solid #135677;
+    outline-offset: 3px;
+}
+.visually-hidden{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
